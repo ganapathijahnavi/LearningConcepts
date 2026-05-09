@@ -1,8 +1,0 @@
-Check if array is sorted
-Program:
-def sorted_check(arr):
-    for i in range(1, len(arr)):
-        if arr[ptr] < arr[i-1]:
-            return False
-    return True
-print(sorted_check(arr))
