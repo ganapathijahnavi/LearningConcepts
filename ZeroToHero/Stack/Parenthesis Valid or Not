@@ -1,0 +1,17 @@
+str1 = "(()()))"
+st = []
+# dic = {'(' : ')'}
+is_valid = True
+for i in str1:
+    if i == '(':
+        st.append(i)
+    elif i == ')':
+        if st:
+            st.pop()
+        else:
+            is_valid = False
+            break
+if is_valid and not st:
+    print("Valid")
+else:
+    print("Invalid")
