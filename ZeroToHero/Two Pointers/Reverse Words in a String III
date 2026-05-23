@@ -1,0 +1,28 @@
+Given a string s, reverse the order of characters in each word within a sentence while still preserving whitespace and initial word order.
+
+Example 1:
+Input: s = "Let's take LeetCode contest"
+Output: "s'teL ekat edoCteeL tsetnoc"
+
+Example 2:
+Input: s = "Mr Ding"
+Output: "rM gniD"
+
+Code:
+st = list(s)
+        l = 0
+        
+        while l < len(st):
+            r = l
+            while r < len(st) and st[r] != ' ':
+                r += 1
+            
+            left, right = l, r - 1
+            while left < right:
+                st[left], st[right] = st[right], st[left]
+                left += 1
+                right -= 1
+            
+            l = r + 1
+            
+        return "".join(st)
