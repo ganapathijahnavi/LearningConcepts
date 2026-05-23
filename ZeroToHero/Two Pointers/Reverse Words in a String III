@@ -32,7 +32,7 @@ class Solution:
     def reverseWords(self, s: str) -> str:
         st = list(s)
         
-        def rev(left, right):
+        def rev(left, right, right_boundary):
             while left < right:
                 st[left], st[right] = st[right], st[left]
                 left += 1   
@@ -45,10 +45,9 @@ class Solution:
             if r < n and st[r] != ' ':
                 r += 1
             else:
-                right_boundary = r 
-                l = rev(l, r - 1)
+                l = rev(l, r - 1, r)
                 r = l
         
-        rev(l, r - 1)
+        rev(l, r - 1, r)
                 
         return "".join(st)
