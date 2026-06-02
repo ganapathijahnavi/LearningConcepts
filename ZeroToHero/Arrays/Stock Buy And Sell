@@ -20,3 +20,20 @@ while(i < j and j < len(prices)):
         i = j
     j += 1
 print(max_prof)
+
+another code:
+class Solution:
+    def stockBuySell(self, nums, n):
+        prevVal = float("inf")
+        maxDiff = 0
+        i = 0
+        while i < len(nums):
+            if nums[i] <= prevVal:
+                prevVal = nums[i]
+            if nums[i] > prevVal:
+                diff = nums[i] - prevVal
+                maxDiff = max(maxDiff, diff)
+            i += 1
+
+        return maxDiff
+  
