@@ -1,0 +1,45 @@
+Given a 0-indexed n x n integer matrix grid, return the number of pairs (ri, cj) such that row ri and column cj are equal.
+A row and column pair is considered equal if they contain the same elements in the same order (i.e., an equal array).
+Example 1:
+Input: grid = [[3,2,1],[1,7,6],[2,7,7]]
+Output: 1
+Explanation: There is 1 equal row and column pair:
+- (Row 2, Column 1): [2,7,7]
+
+Example 2:
+Input: grid = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]
+Output: 3
+Explanation: There are 3 equal row and column pairs:
+- (Row 0, Column 0): [3,1,2,2]
+- (Row 2, Column 2): [2,4,2,2]
+- (Row 3, Column 2): [2,4,2,2]
+
+Code:
+from typing import List
+class Solution:
+    def equalPairs(self, grid: List[List[int]]) -> int:
+        row, col = len(grid), len(grid[0])
+        grid_map = {}
+        grid_map1 = {}
+        cnt = 0
+        for i in range(0, row):
+            temp = ""
+            for j in range(0, col):
+                temp += str(grid[i][j]) +","
+            grid_map[temp] = grid_map.get(temp,0) + 1
+        for i in range(0, row):
+            temp = ""
+            for j in range(0, col):
+                temp += str(grid[j][i]) +","
+            grid_map1[temp] = grid_map1.get(temp,0) + 1
+        for k in grid_map.keys():
+            if k in grid_map1:
+                cnt += grid_map[k] * grid_map1[k]
+        return cnt
+
+ans = Solution()
+# g = [[3,1,2,2],[1,4,4,5],[2,4,2,2],[2,4,2,2]]
+g = [[1,11],[11,1]]
+print(ans.equalPairs(g))
+
+
