@@ -1,0 +1,37 @@
+Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+Example 1:
+Input: text = "nlaebolko"
+Output: 1
+Example 2:
+
+Input: text = "loonbalxballpoon"
+Output: 2
+Example 3:
+
+Input: text = "leetcode"
+Output: 0
+
+Code:
+class Solution:
+    def maxNumberOfBalloons(self, text: str) -> int:
+        hash_map = {}
+        for i in text:
+            if i in ['b','a','l','p','o','n']:
+                hash_map[i] = hash_map.get(i,0) + 1
+
+        res = float('inf')
+        for char in ['b', 'a', 'l', 'o', 'n']:
+            count = hash_map.get(char, 0)
+    
+            if char == 'l' or char == 'o':
+                ans = count // 2 
+            else:
+                ans = count
+      
+            res = min(res, ans)
+            
+        return res
+            
+        
