@@ -1,0 +1,23 @@
+a = int(input())
+b = int(input())
+if a == 0 or b == 0:
+    print("INVALID Inputs")
+elif a > b :
+    print("Given Inputs are Swapped")
+a = abs(a)
+b = abs(b)
+
+palindromes = []
+for i in range(a,b):
+    if str(i) == str(i)[::-1]:
+        palindromes.append(int(i))
+if not palindromes:
+    print("No Palindrome Values")
+total = 0
+for j in palindromes:
+    total += j
+    avg = total / len(palindromes)
+print(f"{avg:.2f}")
+        
+            
+        
