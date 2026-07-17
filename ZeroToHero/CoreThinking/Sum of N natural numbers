@@ -1,0 +1,14 @@
+num = int(input())
+if num == 0:
+    print("InvaLid Input.")
+elif num < 0:
+    print("Sorry! you have Entered Negative Values.")
+total = 1
+res = "1"
+for i in range(2,num+1):
+    total += i
+    res += " + "
+    res += str(i) 
+
+total = str(total)+"."  
+print("Sum of 'N' Natural Numbers is",res,"=",total)
