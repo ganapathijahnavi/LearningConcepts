@@ -1,0 +1,53 @@
+Given two strings, a text string txt and a pattern string pat, both consisting of lowercase English alphabets. Return the starting indices (0-based) of all the occurrences of the pattern string pat in the text string txt.
+Note: Return an empty list in case of no occurrences of pattern.
+Examples:
+Input: txt = "geeksforgeeks", pat = "geek"
+Output: [0, 8]
+Explanation: The string "geek" occurs twice in txt, one starts at index 0 and the other at index 8.
+Input: txt = "abesdu", pat = "edu"
+Output: []
+Explanation: There's no substring "edu" present in txt.
+
+Code:
+class Solution:
+    def search(self, pat, txt):
+        # code here
+        if len(pat) > len(txt):
+            return []
+        def check(arr,pat):
+            if arr == pat:
+                return True
+            else:
+                return False
+        left, right = 0, len(pat)-1
+        res = []
+        while(left <= right and right < len(txt)):
+            if txt[left] == pat[0]:
+                if check(txt[left:right+1],pat):
+                    res.append(left)
+            left += 1
+            right += 1
+         
+        return res
+obj = Solution()
+txt = "geeksforgeeks"
+pat = "geek"
+print(obj.search(pat,txt))
+
+Another Code:
+def find_anagrams(txt, pat):
+    res = []
+    n, m = len(txt), len(pat)
+    if m > n:
+        return res
+      
+    def check(substring, pattern):
+        return sorted(substring) == sorted(pattern)
+
+    for left in range(n - m + 1):
+        window = txt[left : left + m]
+        if window[0] == pat[0] or pat[0] in window: 
+            if check(window, pat):
+                res.append(left)
+                
+    return res
