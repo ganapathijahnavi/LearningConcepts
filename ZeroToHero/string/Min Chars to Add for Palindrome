@@ -1,0 +1,27 @@
+Given a string s, the task is to find the minimum characters to be added at the front to make the string palindrome.
+Note: A palindrome string is a sequence of characters that reads the same forward and backward.
+Examples:
+Input: s = "abc"
+Output: 2
+Explanation: Add 'b' and 'c' at front of the above string to make it palindrome: "cbabc"
+Input: s = "aacecaaaa"
+Output: 2
+Explanation: Add 2 a's at front of the above string to make it palindrome: "aaaacecaaaa"
+
+Code:(using KMP/LPS Pattern)
+class Solution:
+    def minChar(self, s):
+        # code here
+        s_rev = s[::-1]
+        org = s + "$" + s_rev
+        lps = [0]*len(org)
+        for i in range(1,len(org)):
+            j = lps[i-1]
+            while j > 0 and org[i] != org[j]:
+                j = lps[j-1]
+            if org[i] == org[j]:
+                j += 1
+            lps[i] = j
+        longest_pal = lps[-1]
+        return len(s) - longest_pal
+        
