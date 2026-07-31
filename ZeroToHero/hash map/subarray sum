@@ -1,0 +1,17 @@
+Prefixsum + Hashmap
+nums = [1,2,3]
+k = 3
+def subarray_sum(nums, k):
+    count = 0
+    hash_map = {0:1}
+    curr_sum = 0
+    for num in nums:
+        curr_sum += num
+        check = curr_sum - k
+        if check in hash_map:
+            count += hash_map[check]
+        hash_map[curr_sum] = hash_map.get(curr_sum,0)+1
+
+    return count
+        
+print(subarray_sum(nums,k))
