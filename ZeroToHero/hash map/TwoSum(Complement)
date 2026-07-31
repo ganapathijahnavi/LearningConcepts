@@ -1,0 +1,9 @@
+def twosum(nums,tar):
+    hash_map = {}
+    for i in range(len(nums)):
+        val = tar - nums[i]
+        if val in hash_map:
+            return [hash_map[val],i]
+        else:
+            hash_map[nums[i]] = i
+print(twosum(nums,target))
