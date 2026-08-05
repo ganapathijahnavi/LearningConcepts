@@ -30,3 +30,17 @@ class Solution:
             check_set.add(s[r])
             max_substr = max(max_substr, (r-l+1))
         return max_substr
+
+Efficient code(by jumping):
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        l = 0
+        res = 0
+        last_occur = {}
+        res = 0
+        for r in range(len(s)):
+            if s[r] in last_occur:
+                l = max(l, last_occur[s[r]] + 1)
+            last_occur[s[r]] = r
+            res = max(res, r - l + 1) 
+        return res  
