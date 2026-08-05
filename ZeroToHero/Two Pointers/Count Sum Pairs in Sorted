@@ -1,0 +1,61 @@
+You are given an integer target and an array arr[]. You need to find number of pairs in arr[] which sums up to target. It is given that the elements of the arr[] are in sorted order.
+Note:  Pairs should have elements of distinct indexes. 
+
+Examples :
+Input: arr[] = [-1, 1, 5, 5, 7], target = 6
+Output: 3
+Explanation: There are 3 pairs which sum up to 6 : {1, 5}, {1, 5} and {-1, 7}.
+Input: arr[] = [1, 1, 1, 1], target = 2
+Output: 6
+Explanation: There are 6 pairs which sum up to 2 : {1, 1}, {1, 1}, {1, 1}, {1, 1}, {1, 1} and {1, 1}.
+Input: arr[] = [-1, 10, 10, 12, 15], target = 125
+Output: 0
+Explanation: There is no such pair which sums up to 125.
+Constraints:
+-105 <= target <=105
+ 2 <= arr.size() <= 105
+-105 <= arr[i] <= 105
+
+Code:
+using hash map(not efficient because space complexity is o(n))
+class Solution:
+    def countPairs(self, arr, target): 
+        #  Code Here
+        hash_map = {}
+        res = 0
+        for i in range(len(arr)):
+            diff = target - arr[i]
+            if diff in hash_map:
+                res += hash_map[diff]
+            hash_map[arr[i]] = hash_map.get(arr[i],0) + 1
+        return res
+
+efficient code with two pointers:
+class Solution:
+    def countPairs(self, arr, target): 
+        left, right = 0, len(arr)-1
+        count = 0
+        while left < right:
+            tot = arr[left] + arr[right]
+            if tot < target:
+                left += 1
+            elif tot > target:
+                right -= 1
+            else:
+                if arr[left] == arr[right]:
+                    n = right - left + 1
+                    count += (n*(n-1)) // 2
+                    break
+                left_val, right_val = arr[left], arr[right]
+                left_count , right_count = 0, 0
+                while left <= right and arr[left] == left_val:
+                    left_count += 1
+                    left += 1
+                while left <= right and arr[right] == right_val:
+                    right_count += 1
+                    right -= 1
+                count += left_count * right_count
+        return count
+                
+
+
