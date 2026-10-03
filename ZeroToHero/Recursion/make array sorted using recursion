@@ -1,0 +1,16 @@
+arr = [1,3,6,2,5,4]
+def arr_sorted(arr):
+  if len(arr) == 0:
+    return
+  temp = arr.pop()
+  arr_sorted(arr)
+  insert_ele(arr,temp)
+def insert_ele(arr,temp):
+  if len(arr) == 0 or arr[-1] <= temp:
+    arr.append(temp)
+    return
+  val = arr.pop()
+  insert_ele(arr, temp)
+  arr.append(val)
+arr_sorted(arr)
+print(arr)
