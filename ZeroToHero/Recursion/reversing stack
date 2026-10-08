@@ -1,0 +1,16 @@
+arr = [5,4,3,2,1]
+def rev(arr, n):
+  if n == 0:
+    return
+  temp = arr.pop()
+  rev(arr,n-1)
+  insert(arr,temp)
+def insert(arr, temp):
+  if len(arr) == 0:
+    arr.append(temp)
+    return
+  val = arr.pop()
+  insert(arr,temp)
+  arr.append(val)
+rev(arr, len(arr))  
+print(arr)
