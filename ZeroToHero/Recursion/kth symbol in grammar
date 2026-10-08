@@ -1,0 +1,13 @@
+n = int(input())
+k = int(input())
+def solve(n,k):
+  mid = (2**(n-1))//2
+  if n== 1:
+    return 0
+
+  if k <= mid:
+    return solve(n-1,k)
+  else:
+    return 1 - solve(n-1,k-mid)
+  
+print(solve(n,k))
