@@ -1,0 +1,10 @@
+import heapq
+class Solution:
+    def kthSmallest(self, arr, k):
+        # Code here
+        min_ele = 0
+        # min_heap = [p for p in arr]
+        heapq.heapify(arr)
+        for _ in range(k):
+            min_ele = heapq.heappop(arr)
+        return min_ele
