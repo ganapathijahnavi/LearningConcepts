@@ -1,0 +1,66 @@
+You are given an array arr of n integers and an integer K.
+For every subset of arr, compute its XOR sum, which is the bitwise XOR of all elements in that subset. The XOR sum of the empty subset is 0.
+Return the number of subsets whose XOR sum is strictly less than K.
+Subsets are counted by choice of indices, so equal values at different positions give different subsets.
+Input Format
+Line 1: integers n and K
+Line 2: n space-separated integers, arr[0] ... arr[n-1]
+Output Format
+A single integer, the count of subsets with XOR sum < K.
+Constraints (inferred)
+1 <= n <= 20 (so enumerating all 2^n subsets is feasible), or
+1 <= n <= 1000 with 0 <= arr[i] < 1024, if the intended solution is a DP over XOR values
+0 <= K <= 10^9
+The answer can be as large as 2^n, so use a 64-bit integer (or modulo 10^9 + 7 if the original said so)
+Sample Test Cases
+Sample 1
+Input:
+3 3
+1 2 3
+Output:
+6
+All 8 subsets and their XOR sums:
+{} → 0
+{1} → 1
+{2} → 2
+{3} → 3
+{1,2} → 3
+{1,3} → 2
+{2,3} → 1
+{1,2,3} → 0
+The sums less than 3 are 0, 1, 2, 2, 1, 0, so the answer is 6.
+Sample 2
+Input:
+2 4
+4 4
+Output:
+2
+Subsets: {} → 0, {4} → 4, {4} → 4 (the other 4), {4,4} → 0. Only the empty subset and {4,4} are below 4.
+Sample 3
+Input:
+3 1
+1 1 1
+Output:
+4
+Only XOR sum 0 is less than 1. That's the empty subset plus the three pairs, which gives 4.
+
+Code:
+
+def subsets(inp, out, res,k):
+  if len(inp) == 0:
+    check = 0
+    for num in out:
+      check ^= num
+    if check < k:
+      res += 1
+    return res
+  res = subsets(inp[1:], out, res, k)
+  res = subsets(inp[1:], out + [inp[0]], res, k)
+  return res
+inp = [1,2,3]
+k = 3
+res = 0
+res = subsets(inp,[],res,k)
+print(res)
+
+using DP:
