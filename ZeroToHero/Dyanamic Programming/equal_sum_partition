@@ -10,7 +10,7 @@ def subsetsum(arr, tar):
       if curr_num <= j:
         take = dp[i-1][j-curr_num]
       else:
-        not_take = False
+        take = False
       dp[i][j] = take or not_take
   return dp[n][tar]
 nums = [1,5,11,5]
