@@ -1,0 +1,17 @@
+class Solution:
+    def knapSack(self, val, wt, capacity):
+        # code here
+        n = len(val)
+        dp = [[0 for _ in range(capacity+1)]for _ in range(n+1)]
+        for i in range(1,n+1):
+            for j in range(1,capacity+1):
+                curr_val = val[i-1]
+                curr_wt = wt[i-1]
+                not_take = dp[i-1][j]
+                if curr_wt <= j:
+                    take = curr_val + dp[i][j-curr_wt]
+                    dp[i][j] = max(take, not_take)
+                else:
+                    dp[i][j] = not_take
+                    
+        return dp[n][capacity]
